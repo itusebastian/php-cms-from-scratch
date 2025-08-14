@@ -1,0 +1,38 @@
+# Ignore log files
+logs/*
+
+# Ignore configuration templates
+conf/**/*.hbs
+
+
+# Ignore compiled or temporary files
+*.tmp
+*.log
+*.bak
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore environment files
+.env
+
+# Ignore vendor and dependency directories (if used)
+vendor/
+node_modules/
+
+# Ignore IDE/editor folders
+.vscode/
+.idea/
+
+# Ignore mailpit logs
+logs/mailpit/*
+
+# Ignore mysql logs
+logs/mysql/*
+
+# Ignore nginx logs
+logs/nginx/*
+
+# Ignore PHP logs
+logs/php/*
