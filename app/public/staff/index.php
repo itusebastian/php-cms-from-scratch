@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once('../../private/initialize.php'); ?>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHP CMS from Scratch</title>
-  <link rel="stylesheet" media="all" href="../stylesheets/staff.css">
-</head>
+<?php include('../../private/shared/staff_header.php'); ?>
 
-<body>
-  <header>
-    <h1>Welcome to PHP CMS from Scratch</h1>
-  </header>
+<div id="content">
+  <h2>Staff Dashboard</h2>
+  <p>Welcome to the staff dashboard. Here you can manage your content.</p>
+</div>
 
-  <navigation>
-    <ul>
-      <li><a href="index.php">Menu</a></li>
-    </ul>
-  </navigation>
-
-  <div id="content">
-    <h2>Staff Dashboard</h2>
-    <p>Welcome to the staff dashboard. Here you can manage your content.</p>
-  </div>
-
-  <footer>
-    &copy; <?php echo date('Y'); ?> PHP CMS from Scratch. All rights reserved.
-  </footer>
-</body>
-
-</html>
+<?php include('../../private/shared/staff_footer.php'); ?>
