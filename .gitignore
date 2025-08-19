@@ -26,3 +26,4 @@ node_modules/
 
 # Ignore WordPress config
 app/public/wp-config.php
+app/sql/local.sql
