@@ -8,7 +8,7 @@
     <h2>Main Menu</h2>
     <ul>
       <li><a href="<?php echo url_for('/staff/subjects'); ?>">Subject List</a></li>
-      <li><a href="<?php echo url_for('/staff/subjects/new'); ?>">Add Subject</a></li>
+      <li><a href="<?php echo url_for('/staff/pages'); ?>">Pages List</a></li>
     </ul>
   </div>
 </div>
