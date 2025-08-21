@@ -15,7 +15,7 @@ if (!isset($page_title)) {
 
 <body>
   <header>
-    <h1>Welcome to PHP CMS from Scratch</h1>
+    <h1>PHP CMS Staff Area</h1>
   </header>
 
   <navigation>
