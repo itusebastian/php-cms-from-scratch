@@ -1,15 +1,13 @@
 <?php
-
 ob_start(); // output buffering is turned on
 
-
 // Assign file paths to PHP constants
-// _FILE_ returns the current file path
-// dirname() returns the parent directory path
-define('PRIVATE_PATH', dirname(__FILE__));
-define('PROJECT_PATH', dirname(PRIVATE_PATH));
-define('PUBLIC_PATH', PRIVATE_PATH . '/public');
-define('SHARED_PATH', PRIVATE_PATH . '/shared');
+// __FILE__ returns the current path to this file
+// dirname() returns the path to the parent directory
+define("PRIVATE_PATH", dirname(__FILE__));
+define("PROJECT_PATH", dirname(PRIVATE_PATH));
+define("PUBLIC_PATH", PROJECT_PATH . '/public');
+define("SHARED_PATH", PRIVATE_PATH . '/shared');
 
 // Assign the root URL to a PHP constant
 // * Do not need to include the domain
@@ -25,5 +23,7 @@ define("WWW_ROOT", '');
 require_once('functions.php');
 require_once('database.php');
 require_once('query_functions.php');
+require_once('validation_functions.php');
 
 $db = db_connect();
+$errors = [];

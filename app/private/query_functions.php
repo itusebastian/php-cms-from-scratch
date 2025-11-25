@@ -1,6 +1,6 @@
 <?php
 
-//
+// Subjects
 
 function find_all_subjects()
 {
@@ -8,6 +8,7 @@ function find_all_subjects()
 
   $sql = "SELECT * FROM subjects ";
   $sql .= "ORDER BY position ASC";
+  //echo $sql;
   $result = mysqli_query($db, $sql);
   confirm_result_set($result);
   return $result;
@@ -23,12 +24,48 @@ function find_subject_by_id($id)
   confirm_result_set($result);
   $subject = mysqli_fetch_assoc($result);
   mysqli_free_result($result);
-  return $subject;
+  return $subject; // returns an assoc. array
+}
+
+function validate_subject($subject)
+{
+  $errors = [];
+
+  // menu_name
+  if (is_blank($subject['menu_name'])) {
+    $errors[] = "Name cannot be blank.";
+  } elseif (!has_length($subject['menu_name'], ['min' => 2, 'max' => 255])) {
+    $errors[] = "Name must be between 2 and 255 characters.";
+  }
+
+  // position
+  // Make sure we are working with an integer
+  $postion_int = (int) $subject['position'];
+  if ($postion_int <= 0) {
+    $errors[] = "Position must be greater than zero.";
+  }
+  if ($postion_int > 999) {
+    $errors[] = "Position must be less than 999.";
+  }
+
+  // visible
+  // Make sure we are working with a string
+  $visible_str = (string) $subject['visible'];
+  if (!has_inclusion_of($visible_str, ["0", "1"])) {
+    $errors[] = "Visible must be true or false.";
+  }
+
+  return $errors;
 }
 
 function insert_subject($subject)
 {
   global $db;
+
+  $errors = validate_subject($subject);
+  if (!empty($errors)) {
+    return $errors;
+  }
 
   $sql = "INSERT INTO subjects ";
   $sql .= "(menu_name, position, visible) ";
@@ -53,6 +90,11 @@ function update_subject($subject)
 {
   global $db;
 
+  $errors = validate_subject($subject);
+  if (!empty($errors)) {
+    return $errors;
+  }
+
   $sql = "UPDATE subjects SET ";
   $sql .= "menu_name='" . $subject['menu_name'] . "', ";
   $sql .= "position='" . $subject['position'] . "', ";
@@ -61,12 +103,11 @@ function update_subject($subject)
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
-  // For UPDATE statements, $result will be true/false
+  // For UPDATE statements, $result is true/false
   if ($result) {
-    // Success
     return true;
   } else {
-    // Failure
+    // UPDATE failed
     echo mysqli_error($db);
     db_disconnect($db);
     exit;
@@ -80,7 +121,6 @@ function delete_subject($id)
   $sql = "DELETE FROM subjects ";
   $sql .= "WHERE id='" . $id . "' ";
   $sql .= "LIMIT 1";
-
   $result = mysqli_query($db, $sql);
 
   // For DELETE statements, $result is true/false
@@ -93,6 +133,8 @@ function delete_subject($id)
     exit;
   }
 }
+
+// Pages
 
 function find_all_pages()
 {
@@ -115,7 +157,7 @@ function find_page_by_id($id)
   confirm_result_set($result);
   $page = mysqli_fetch_assoc($result);
   mysqli_free_result($result);
-  return $page;
+  return $page; // returns an assoc. array
 }
 
 function insert_page($page)
@@ -157,12 +199,11 @@ function update_page($page)
   $sql .= "LIMIT 1";
 
   $result = mysqli_query($db, $sql);
-  // For UPDATE statements, $result will be true/false
+  // For UPDATE statements, $result is true/false
   if ($result) {
-    // Success
     return true;
   } else {
-    // Failure
+    // UPDATE failed
     echo mysqli_error($db);
     db_disconnect($db);
     exit;
