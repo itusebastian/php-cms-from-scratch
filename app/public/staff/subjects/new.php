@@ -7,7 +7,7 @@ $subject_count = mysqli_num_rows($subject_set) + 1;
 mysqli_free_result($subject_set);
 
 $subject = [];
-$subject['position'] = $subject_count;
+$subject["position"] = $subject_count;
 
 ?>
 
@@ -31,13 +31,9 @@ $subject['position'] = $subject_count;
         <dd>
           <select name="position">
             <?php
-            for (
-              $i = 1;
-              $i <= $subject_count;
-              $i++
-            ) {
+            for ($i = 1; $i <= $subject_count; $i++) {
               echo "<option value=\"{$i}\"";
-              if ($subject['position'] == $i) {
+              if ($subject["position"] == $i) {
                 echo " selected";
               }
               echo ">{$i}</option>";

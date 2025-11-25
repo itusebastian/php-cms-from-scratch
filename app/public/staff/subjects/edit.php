@@ -2,7 +2,10 @@
 
 require_once('../../../private/initialize.php');
 
-$id = $_GET['id'] ?? '';
+if (!isset($_GET['id'])) {
+  redirect_to(url_for('/staff/subjects/index.php'));
+}
+$id = $_GET['id'];
 
 if (is_post_request()) {
 
@@ -14,7 +17,7 @@ if (is_post_request()) {
   $subject['position'] = $_POST['position'] ?? '';
   $subject['visible'] = $_POST['visible'] ?? '';
 
-  $results = update_subject($subject);
+  $result = update_subject($subject);
   redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
 } else {
 
@@ -47,13 +50,9 @@ if (is_post_request()) {
         <dd>
           <select name="position">
             <?php
-            for (
-              $i = 1;
-              $i <= $subject_count;
-              $i++
-            ) {
+            for ($i = 1; $i <= $subject_count; $i++) {
               echo "<option value=\"{$i}\"";
-              if ($subject['position'] == $i) {
+              if ($subject["position"] == $i) {
                 echo " selected";
               }
               echo ">{$i}</option>";
