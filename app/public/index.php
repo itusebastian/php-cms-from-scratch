@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once('../private/initialize.php'); ?>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHP CMS from Scratch</title>
-</head>
+<?php include(SHARED_PATH . '/public_header.php'); ?>
 
-<body>
-  <h1>Welcome to PHP CMS from Scratch</h1>
-</body>
+<div id="main">
 
-</html>
+  <div id="page">
+
+  </div>
+
+</div>
+
+<?php include(SHARED_PATH . '/public_footer.php'); ?>
