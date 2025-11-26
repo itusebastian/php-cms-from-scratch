@@ -9,6 +9,11 @@ function db_connect()
   return $connection;
 }
 
+function db_escape($connection, $string)
+{
+  return mysqli_real_escape_string($connection, $string);
+}
+
 function db_disconnect($connection)
 {
   if (isset($connection)) {
