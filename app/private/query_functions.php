@@ -249,7 +249,7 @@ function update_page($page)
   $sql .= "menu_name='" . db_escape($db, $page['menu_name']) . "', ";
   $sql .= "position='" . db_escape($db, $page['position']) . "', ";
   $sql .= "visible='" . db_escape($db, $page['visible']) . "', ";
-  $sql .= "content='" . db_escape($db, $page['content']) . "', ";
+  $sql .= "content='" . db_escape($db, $page['content']) . "' ";
   $sql .= "WHERE id='" . db_escape($db, $page['id']) . "' ";
   $sql .= "LIMIT 1";
 
