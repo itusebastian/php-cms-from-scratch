@@ -8,6 +8,9 @@ $subject_id = $subject_id ?? '';
   <?php $nav_subjects = find_all_subjects(); ?>
   <ul class="subjects">
     <?php while ($nav_subject = mysqli_fetch_assoc($nav_subjects)) { ?>
+      <?php if (!$nav_subject['visible']) {
+        continue;
+      } ?>
       <li class="<?php if ($nav_subject['id'] == $subject_id) {
                     echo 'selected';
                   } ?>">
@@ -19,6 +22,9 @@ $subject_id = $subject_id ?? '';
           <?php $nav_pages = find_pages_by_subject_id($nav_subject['id']); ?>
           <ul class="pages">
             <?php while ($nav_page = mysqli_fetch_assoc($nav_pages)) { ?>
+              <?php if (!$nav_page['visible']) {
+                continue;
+              } ?>
               <li class="<?php if ($nav_page['id'] == $page_id) {
                             echo 'selected';
                           } ?>">
