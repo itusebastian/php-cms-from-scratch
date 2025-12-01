@@ -2,12 +2,11 @@
 
 <?php
 
-if(is_post_request()) {
+if (is_post_request()) {
   // Form was submitted
   $language = $_POST['language'] ?? 'Any';
-  $expire = time() + 60*60*24*365;
+  $expire = time() + 60 * 60 * 24 * 365;
   setcookie('language', $language, $expire);
-
 } else {
   // Read the stored value (if any)
   $language = $_COOKIE['language'] ?? 'Any';
@@ -32,14 +31,14 @@ if(is_post_request()) {
 
         <select name="language">
           <?php
-            $language_choices = ['Any', 'English', 'Spanish', 'French', 'German'];
-            foreach($language_choices as $language_choice) {
-              echo "<option value=\"{$language_choice}\"";
-              if($language == $language_choice) {
-                echo " selected";
-              }
-              echo ">{$language_choice}</option>";
+          $language_choices = ['Any', 'English', 'Spanish', 'French', 'German'];
+          foreach ($language_choices as $language_choice) {
+            echo "<option value=\"{$language_choice}\"";
+            if ($language == $language_choice) {
+              echo " selected";
             }
+            echo ">{$language_choice}</option>";
+          }
           ?>
         </select><br />
         <br />
